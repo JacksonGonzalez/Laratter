@@ -10,7 +10,9 @@ class PagesController extends Controller
     //
     public function home()
     {
-	  	$messages = Message::all();
+	  	$messages = Message::latest()->paginate(10);//e permite hacer la paginacion automatica
+        //Message::all()//trae todos los datos
+        //Message::find() busca un dato en particualar
 
 
 	    return view('welcome', [

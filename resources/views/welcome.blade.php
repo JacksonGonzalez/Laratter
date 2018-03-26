@@ -31,14 +31,16 @@
 <div class="row">
     @forelse($messages as $message)
         <div class="col-6">
-            <img class="img-thumbnail" src="{{ $message->image }}">
-            <p class="card-text">
-                {{ $message->content }}
-                <a href="/messages/{{ $message->id }}">Leer Más</a>
-            </p>
+            @include('messages.message')
         </div>
     @empty
         <p>No tiene Datos para mostrar</p>
     @endforelse
+    <!--Area de la paginacion-->
+    @if(count($messages))
+        <div class="mt-2 mx-auto">
+            {{ $messages->links() }}
+        </div>
+    @endif
 </div>
 @endsection

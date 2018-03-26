@@ -10,7 +10,14 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        factory(App\User::class, 50)->create()-> each(function(App\User $user){
         // $this->call(UsersTableSeeder::class);
+            factory(App\Message::class)
+            	->times(10)//la cantidad de registros a guardar
+            	->create([
+                    'user_id' => $user->id,
+                ]);
+        });
     }
 }
