@@ -31,4 +31,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class)->orderBy('created_at', 'desc');//trae los datos ordenados por fecha de maera descendiente
     }
+
+    public function follows()
+    {
+        //Para saber a quien sigo
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'followed_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'user_id');
+    }
 }
